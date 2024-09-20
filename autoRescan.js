@@ -12,7 +12,10 @@ async function start() {
     console.log(cmdresA);
     const parsed = JSON.parse(cmdresA);
     const importReq = parsed.import;
-    if (importReq.length > 50) {
+    if (!importReq) {
+      return;
+    }
+    if (importReq.length > 40) {
       console.log('PANIC');
       return;
     }
@@ -27,7 +30,7 @@ async function start() {
   } finally {
     setTimeout(() => {
       start();
-    }, 2* 60 * 60 * 1000) // run every 2 hours
+    }, 30 * 60 * 1000) // run every 30 mins
   }
 }
 
